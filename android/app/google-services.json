@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "401862934714",
+    "firebase_url": "https://flutter-toyota-app-54048.firebaseio.com",
+    "project_id": "flutter-toyota-app-54048",
+    "storage_bucket": "flutter-toyota-app-54048.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:401862934714:android:e3ab83bd54d58904f00283",
+        "android_client_info": {
+          "package_name": "com.example.toyota_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "401862934714-feed95l4ap8hte27r04m5en3090olg6l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtWBCMkfZmbZTe0TW6-1KEhHCPYZz6-kc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "401862934714-feed95l4ap8hte27r04m5en3090olg6l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
