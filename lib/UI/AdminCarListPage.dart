@@ -2,15 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:toyota_app/UI/CarForm.dart';
 import 'package:toyota_app/UI/MoreDetailsPage.dart';
+import 'package:toyota_app/Notifier/CarNotifier.dart';
 
 
-class CarListPage extends StatefulWidget{
+class AdminCarListPage extends StatefulWidget{
   @override
-  State createState() => CarListPageState();
+  State createState() => AdminCarListPageState();
 }
 
-class CarListPageState extends State<CarListPage>{
+class AdminCarListPageState extends State<AdminCarListPage>{
 
   @override
   void initState(){
@@ -18,7 +20,6 @@ class CarListPageState extends State<CarListPage>{
     Timer(Duration(seconds: 5), ()=>print("Timeout"));
 
   }
-
 
 
 
@@ -104,12 +105,12 @@ class CarListPageState extends State<CarListPage>{
                                           style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold,color: Colors.blueGrey),),
                                         new OutlineButton(
                                           child: Text('Details',
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
-                                                fontFamily: 'Montserrat'
-                                            )
-                                        ),
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontFamily: 'Montserrat'
+                                              )
+                                          ),
                                           color: Colors.purple,
                                           splashColor: Colors.blue,
                                           borderSide: BorderSide(color: Colors.blueAccent),
@@ -132,7 +133,20 @@ class CarListPageState extends State<CarListPage>{
                 );
               }
             }
-        )
+        ),
+      floatingActionButton: FloatingActionButton(
+        //onPressed: _incrementCounter,
+        //tooltip: 'Increment',
+        backgroundColor: Colors.blue,
+        child: Icon(Icons.add),
+        foregroundColor: Colors.white,
+        onPressed: (){
+          //carNotifier.currentCar = null;
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => CarForm())
+          );
+        },
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 
