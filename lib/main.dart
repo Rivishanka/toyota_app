@@ -6,6 +6,7 @@ void main(){
   runApp(new MaterialApp(
     theme: ThemeData(primaryColor: Colors.redAccent,accentColor: Colors.white),
     debugShowCheckedModeBanner: false,
-    home: HomePage2(),
+    home: HomePage2()
+
   ));
 }

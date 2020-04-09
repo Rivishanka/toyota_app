@@ -2,6 +2,7 @@ import 'package:toyota_app/Animations/fadeAnimation.dart';
 import 'package:flutter/material.dart';
 import 'package:toyota_app/UI/signUpPage.dart';
 
+import 'AdminCarListPage.dart';
 import 'CarListPage.dart';
 
 class LoginTestPage extends StatelessWidget {
@@ -119,7 +120,7 @@ class LoginTestPage extends StatelessWidget {
                 child: OutlineButton(
                   child: Center(child: Text("Login", style: TextStyle(color: Colors.white.withOpacity(.7)),)),
                   onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => CarListPage()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => AdminCarListPage()));
                   },
                 )
               ),
