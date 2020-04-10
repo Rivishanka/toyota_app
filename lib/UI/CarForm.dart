@@ -13,11 +13,13 @@ import 'dart:io';
 import 'package:toyota_app/API/VehicleAPI.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 
 // This file is for adding the vehicle details
 
 class CarForm extends StatefulWidget {
+
   CarForm({Key key}) : super(key: key);
 
   @override
@@ -141,12 +143,25 @@ class _CarFormState extends State<CarForm>{
     Car user = Car(Colour: controller1.text, Image: url, MPG: controller2.text, Model: controller3.text, NoOfSheets: controller4.text, Price: controller5.text, SpecialFeatures: controller6.text);
     api.addCar(user);
 
+
     controller1.text = '';
     controller2.text = '';
     controller3.text = '';
     controller4.text = '';
     controller5.text = '';
     controller6.text = '';
+  }
+
+  void showToast(){
+    Fluttertoast.showToast(
+        msg: "The vehicle is successfully added",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.black,
+        fontSize: 16.0
+    );
   }
 
   uploadImage() async{
@@ -291,6 +306,7 @@ class _CarFormState extends State<CarForm>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
+
       appBar: AppBar(title: Text('Car Form'), backgroundColor: Colors.indigo, leading: GestureDetector(
         onTap: (){Navigator.pop(context, false);},
         child: Icon(
@@ -333,16 +349,26 @@ class _CarFormState extends State<CarForm>{
                 children: <Widget>[
               ButtonTheme(
                 child: RaisedButton(
-                onPressed: () => uploadImage(),
+                onPressed: (){
+                  uploadImage();
+                  final snackBar = SnackBar(
+                    backgroundColor: Colors.lightBlue[700],
+                    content: Text('Vehicle Added'),
+                    action: SnackBarAction(
+                      label: 'Okay',
+                      onPressed: (){},
+                    ),
+                  );
+                  Scaffold.of(this.context).showSnackBar(snackBar);
+                },
                 child: Text(
                   'Add Vehicle',
                   style: TextStyle(color: Colors.white, ),
                   textAlign: TextAlign.center,
-
-
                 ),
               ),)
-            ],)
+            ],
+            )
           ],
             ),
       ),

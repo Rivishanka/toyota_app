@@ -72,5 +72,14 @@ class VehicleAPI {
   }
 
 
+  delete(Car car){
+    Firestore.instance.runTransaction(
+          (Transaction transaction) async {
+        await transaction.delete(car.reference);
+      },
+    );
+  }
+
+
 
 }

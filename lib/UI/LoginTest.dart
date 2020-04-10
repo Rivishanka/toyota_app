@@ -1,8 +1,8 @@
 import 'package:toyota_app/Animations/fadeAnimation.dart';
 import 'package:flutter/material.dart';
+import 'package:toyota_app/UI/AdminCarListPage.dart';
 import 'package:toyota_app/UI/signUpPage.dart';
 
-import 'AdminCarListPage.dart';
 import 'CarListPage.dart';
 
 class LoginTestPage extends StatelessWidget {
@@ -99,11 +99,11 @@ class LoginTestPage extends StatelessWidget {
             SizedBox(height: 40,),
             FadeAnimationScreen(1.8, Center(
               child: Container(
-                height: 60.0,
+                height: 50.0,
                 width: 250.0,
                 padding: EdgeInsets.all(15),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(40),
+                    borderRadius: BorderRadius.circular(10),
 
                     gradient: LinearGradient(
                         begin: Alignment.topCenter,
@@ -137,11 +137,11 @@ class LoginTestPage extends StatelessWidget {
             SizedBox(height: 40,),
             FadeAnimationScreen(1.8, Center(
               child: Container(
-                  height: 60.0,
+                 height: 50.0,
                   width: 250.0,
                 padding: EdgeInsets.all(15),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(40),
+                    borderRadius: BorderRadius.circular(10),
 
                     gradient: LinearGradient(
                         begin: Alignment.topCenter,
