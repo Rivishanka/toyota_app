@@ -8,6 +8,7 @@ import 'package:toyota_app/API/VehicleAPI.dart';
 import 'package:toyota_app/Models/Car.dart';
 import 'package:toyota_app/Notifier/CarNotifier.dart';
 import 'package:path/path.dart' as path;
+import 'package:toyota_app/UI/AdminCarListPage.dart';
 import 'package:uuid/uuid.dart';
 import 'dart:io';
 import 'package:toyota_app/API/VehicleAPI.dart';
@@ -301,6 +302,27 @@ class _CarFormState extends State<CarForm>{
     );
   }
 
+  Widget alertBox(){
+    return AlertDialog(
+      title: Text("Do you want to add the vehicle?"),
+      actions: <Widget>[
+        FlatButton(child: Text('No'),
+        onPressed: (){
+          Navigator.of(this.context, rootNavigator: true).pop();
+        },),
+        FlatButton(child: Text('Yes'),
+          onPressed: (){
+          uploadImage();
+
+          Navigator.of(this.context).push(
+              MaterialPageRoute(builder: (context) => AdminCarListPage())
+          );
+
+          },
+        )
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -350,16 +372,10 @@ class _CarFormState extends State<CarForm>{
               ButtonTheme(
                 child: RaisedButton(
                 onPressed: (){
-                  uploadImage();
-                  final snackBar = SnackBar(
-                    backgroundColor: Colors.lightBlue[700],
-                    content: Text('Vehicle Added'),
-                    action: SnackBarAction(
-                      label: 'Okay',
-                      onPressed: (){},
-                    ),
-                  );
-                  Scaffold.of(this.context).showSnackBar(snackBar);
+                  //uploadImage();
+                  showDialog(context: context,
+                    builder: (BuildContext context) => alertBox());
+                  
                 },
                 child: Text(
                   'Add Vehicle',
