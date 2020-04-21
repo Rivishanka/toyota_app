@@ -2,24 +2,30 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:toyota_app/API/VehicleAPI.dart';
+import 'package:toyota_app/UI/CarForm.dart';
 import 'package:toyota_app/UI/MoreDetailsPage.dart';
-
-import 'CarForm.dart';
-
+import 'package:toyota_app/Notifier/CarNotifier.dart';
+import 'package:toyota_app/Models/Car.dart';
+import 'package:toyota_app/UI/PopularityOfVehicles.dart';
 
 class AdminCarListPage extends StatefulWidget{
   @override
-  State createState() => CarListPageState();
+  State createState() => AdminCarListPageState();
 }
 
-class CarListPageState extends State<AdminCarListPage>{
+class AdminCarListPageState extends State<AdminCarListPage>{
 
+  VehicleAPI api = new VehicleAPI();
   @override
   void initState(){
     super.initState();
     Timer(Duration(seconds: 5), ()=>print("Timeout"));
 
   }
+
+
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -27,7 +33,7 @@ class CarListPageState extends State<AdminCarListPage>{
 
         appBar: AppBar(
           title: Text("Toyota"),
-          backgroundColor: Colors.indigo,
+          backgroundColor: Color(0xFF01579B),
           leading: GestureDetector(
             onTap: (){Navigator.pop(context, false);},
             child: Icon(
@@ -38,25 +44,18 @@ class CarListPageState extends State<AdminCarListPage>{
             Padding(
               padding: EdgeInsets.only(right: 20.0),
               child: GestureDetector(
-                onTap: () {},
-                child: Icon(
-                    Icons.add
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
                 onTap: () {
-                  setState(() {
-                  });
+                  Navigator.of(this.context).push(
+                      MaterialPageRoute(builder: (context) => PopularityVehicles())
+                  );
                 },
                 child: Icon(
-                    Icons.search
+                    Icons.favorite_border
                 ),
               ),
-            ),
+            )
           ],
+
           actionsIconTheme: IconThemeData(
               color: Colors.white,
               size: 30.0
@@ -69,57 +68,25 @@ class CarListPageState extends State<AdminCarListPage>{
               if(!snapshot.hasData){
                 const Text('Please wait...');
               }
+
               else{
                 return ListView.builder(
                     itemCount: snapshot.data.documents.length,
                     itemBuilder: (context,index){
                       DocumentSnapshot mypost = snapshot.data.documents[index];
+                      final car = Car.fromSnapshot(mypost);
                       return new Padding(
+                        key: ValueKey(car.Model),
                         padding: new EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
                         child: new Card(
                           elevation: 12.0,
                           shape: new RoundedRectangleBorder(
                             borderRadius: new BorderRadius.circular(16.0),
                           ),
-
                           child: new Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              new Padding(
-                                padding: new EdgeInsets.all(16.0),
-                                child: new Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    new Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        new Text('${mypost['Model']}',
-                                          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-                                        ),
-                                        new OutlineButton(
-                                          child: Text('Delete',
-                                              style: TextStyle(
-                                                  color: Colors.red,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontFamily: 'Montserrat'
-                                              )
-                                          ),
-                                          color: Colors.purple,
-                                          splashColor: Colors.blue,
-                                          borderSide: BorderSide(color: Colors.blueAccent),
-                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-                                          onPressed: (){
-                                            Navigator.push(context, MaterialPageRoute(builder: (context) => MoreDetailsPage()));
-                                          },
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-
-                              ),
                               new ClipRRect(
                                 child: new Image.network(
                                   '${mypost['Image']}',
@@ -136,26 +103,21 @@ class CarListPageState extends State<AdminCarListPage>{
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
+                                    new Text('${mypost['Model']}',
+                                      style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                                    ),
+                                    new SizedBox(height: 16.0),
                                     new Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
                                         new Text('${mypost['Price']}',
-                                          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold,color: Colors.blueGrey),),
-                                        new OutlineButton(
-                                          child: Text('Update',
-                                              style: TextStyle(
-                                                  color: Colors.green,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontFamily: 'Montserrat'
-                                              )
-                                          ),
-                                          color: Colors.purple,
-                                          splashColor: Colors.blue,
-                                          borderSide: BorderSide(color: Colors.blueAccent),
-                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-                                          onPressed: (){
-                                            Navigator.push(context, MaterialPageRoute(builder: (context) => MoreDetailsPage()));
-                                          },),
+                                          style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold,color: Colors.blueGrey),),
+
+
+
+
+
+
                                         new OutlineButton(
                                           child: Text('Details',
                                               style: TextStyle(
@@ -171,15 +133,47 @@ class CarListPageState extends State<AdminCarListPage>{
                                           onPressed: (){
                                             Navigator.push(context, MaterialPageRoute(builder: (context) => MoreDetailsPage()));
                                           },),
+
+//                                        new FloatingActionButton(
+//                                          //icon: Icon(Icons.delete, color: Colors.red,),
+//                                          backgroundColor: Colors.white,
+//                                          child: Icon(Icons.delete),
+//                                          foregroundColor: Colors.red,
+//                                          onPressed: (){
+//                                            api.delete(car);
+//                                           // Navigator.push(context, MaterialPageRoute(builder: (context) => MoreDetailsPage()));
+//                                          },),
+
+
+                                        new OutlineButton(
+                                          child: Text('Delete',
+                                              style: TextStyle(
+                                                 // backgroundColor: Colors.red,
+                                                  color: Colors.red,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontFamily: 'Montserrat'
+                                              )
+                                          ),
+                                          //color: Colors.purple,
+                                          //splashColor: Colors.blue,
+                                          borderSide: BorderSide(color: Colors.redAccent),
+                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+                                          onPressed: (){
+                                            api.delete(car);
+                                            //Navigator.push(context, MaterialPageRoute(builder: (context) => MoreDetailsPage()));
+                                          },),
+
+
                                       ],
                                     )
                                   ],
                                 ),
 
-                              ),
+                              )
                             ],
                           ),
                         ),
+
                       );
                     }
                 );
@@ -198,50 +192,8 @@ class CarListPageState extends State<AdminCarListPage>{
               MaterialPageRoute(builder: (context) => CarForm())
           );
         },
-      ),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 
-}
-
-
-class DetailPage extends StatefulWidget {
-
-  final DocumentSnapshot post;
-
-  DetailPage({this.post});
-
-  @override
-  _DetailPageState createState() => _DetailPageState();
-}
-
-class _DetailPageState extends State<DetailPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text("Model "),
-          backgroundColor: Colors.indigo,
-          leading: GestureDetector(
-            onTap: (){Navigator.pop(context, false);},
-            child: Icon(
-                Icons.arrow_back_ios
-            ),
-          ),
-
-          actionsIconTheme: IconThemeData(
-              color: Colors.white,
-              size: 30.0
-          ),
-        ),
-      body: Container(
-        child: Card(
-          child: ListTile(
-
-          ),
-        ),
-      ),
-
-    );
-  }
 }

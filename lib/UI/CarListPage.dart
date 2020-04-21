@@ -30,7 +30,7 @@ class CarListPageState extends State<CarListPage>{
 
         appBar: AppBar(
           title: Text("Toyota"),
-          backgroundColor: Colors.indigo,
+          backgroundColor: Color(0xFF01579B),
           leading: GestureDetector(
             onTap: (){Navigator.pop(context, false);},
             child: Icon(

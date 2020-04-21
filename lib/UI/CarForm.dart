@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:io/ansi.dart';
 import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'package:toyota_app/API/VehicleAPI.dart';
@@ -9,6 +10,7 @@ import 'package:toyota_app/Models/Car.dart';
 import 'package:toyota_app/Notifier/CarNotifier.dart';
 import 'package:path/path.dart' as path;
 import 'package:toyota_app/UI/AdminCarListPage.dart';
+import 'package:toyota_app/UI/PopularityOfVehicles.dart';
 import 'package:uuid/uuid.dart';
 import 'dart:io';
 import 'package:toyota_app/API/VehicleAPI.dart';
@@ -69,7 +71,7 @@ class _CarFormState extends State<CarForm>{
             color: Colors.black54,
             child: Text(
               'Change Image',
-              style: TextStyle(color: Colors.white, fontSize: 22),
+              style: TextStyle(color: Colors.white, fontSize: 18),
             ),
             onPressed: () => getLocalImage(),
           )
@@ -188,12 +190,14 @@ class _CarFormState extends State<CarForm>{
   }
 
   Widget _buildColourField(){
+
     return TextFormField(
       controller: controller1,
-      decoration: InputDecoration(labelText: 'Color'),
+      decoration: InputDecoration(fillColor: Colors.white, filled: true,contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0), border: OutlineInputBorder(borderRadius: BorderRadius.circular(10),), labelText: 'Color'),
+      //decoration: InputDecoration(labelText: 'Color'),
       //initialValue: _curretCar.Colour,
       keyboardType: TextInputType.text,
-      style: TextStyle(fontSize: 20),
+      style: TextStyle(fontSize: 16),
       validator: (String value){
         if(value.isEmpty){
           return 'Color is required';
@@ -210,10 +214,11 @@ class _CarFormState extends State<CarForm>{
 
     return TextFormField(
       controller: controller2,
-      decoration: InputDecoration(labelText: 'MPG'),
+      decoration: InputDecoration(fillColor: Colors.white, filled: true,contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0), border: OutlineInputBorder(borderRadius: BorderRadius.circular(10),), labelText: 'MPG',),
+      //decoration: InputDecoration(labelText: 'MPG'),
       //initialValue: _curretCar.MPG,
       keyboardType: TextInputType.text,
-      style: TextStyle(fontSize: 20),
+      style: TextStyle(fontSize: 16),
       validator: (String value){
         if(value.isEmpty){
           return 'MPG is required';
@@ -229,10 +234,11 @@ class _CarFormState extends State<CarForm>{
   Widget _buildModelField(){
     return TextFormField(
       controller: controller3,
-      decoration: InputDecoration(labelText: 'Model'),
+      decoration: InputDecoration(fillColor: Colors.white, filled: true,contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0), border: OutlineInputBorder(borderRadius: BorderRadius.circular(10),), labelText: 'Model',),
+      //decoration: InputDecoration(labelText: 'Model'),
       //initialValue: _curretCar.MPG,
       keyboardType: TextInputType.text,
-      style: TextStyle(fontSize: 20),
+      style: TextStyle(fontSize: 16),
       validator: (String value){
         if(value.isEmpty){
           return 'Model is required';
@@ -245,13 +251,62 @@ class _CarFormState extends State<CarForm>{
     );
   }
 
+
+
+
+
+//  Widget _buildNoOfSheetsField(){
+//    return Container(
+//      decoration: BoxDecoration(
+//          borderRadius: BorderRadius.circular(10),
+//          color: Colors.white,
+//      ),
+//      child: TextField(
+//        decoration: InputDecoration(
+//            border: InputBorder.none,
+//            contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+//            hintStyle: TextStyle(color: Colors.grey.withOpacity(.8),),
+//            hintText: "No of Sheets",
+//        ),
+//      ),
+//    );
+//
+//
+//
+//    return TextFormField(
+//      controller: controller4,
+//      //decoration: InputDecoration(fillColor: Colors.black12, filled: true,contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0), border: OutlineInputBorder(borderRadius: BorderRadius.circular(10),),labelText: 'No of Sheets',),
+//      // decoration: InputDecoration(labelText: 'No of Sheets'),
+//      //initialValue: _curretCar.MPG,
+//      keyboardType: TextInputType.text,
+//      style: TextStyle(fontSize: 20),
+//      validator: (String value){
+//        if(value.isEmpty){
+//          return 'No of Sheets are required';
+//        }
+//        return null;
+//      },
+//      onSaved: (String value){
+//        //  _curretCar.NoOfSheets = value;
+//      },
+//    );
+//  }
+
+
+
+
+
+
+
+
   Widget _buildNoOfSheetsField(){
     return TextFormField(
       controller: controller4,
-      decoration: InputDecoration(labelText: 'No of Sheets'),
+      decoration: InputDecoration(fillColor: Colors.white, filled: true,contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0), border: OutlineInputBorder(borderRadius: BorderRadius.circular(10),),labelText: 'No of Sheets',),
+     // decoration: InputDecoration(labelText: 'No of Sheets'),
       //initialValue: _curretCar.MPG,
       keyboardType: TextInputType.text,
-      style: TextStyle(fontSize: 20),
+      style: TextStyle(fontSize: 16),
       validator: (String value){
         if(value.isEmpty){
           return 'No of Sheets are required';
@@ -267,10 +322,10 @@ class _CarFormState extends State<CarForm>{
   Widget _buildPriceField(){
     return TextFormField(
       controller: controller5,
-      decoration: InputDecoration(labelText: 'Price'),
+      decoration: InputDecoration(fillColor: Colors.white, filled: true, contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),border: OutlineInputBorder(borderRadius: BorderRadius.circular(10),), labelText: 'Price'),
       //initialValue: _curretCar.MPG,
       keyboardType: TextInputType.text,
-      style: TextStyle(fontSize: 20),
+      style: TextStyle(fontSize: 16,),
       validator: (String value){
         if(value.isEmpty){
           return 'Price is required';
@@ -286,10 +341,11 @@ class _CarFormState extends State<CarForm>{
   Widget _buildSpecialFeaturesField(){
     return TextFormField(
       controller: controller6,
-      decoration: InputDecoration(labelText: 'Special Features'),
+      decoration: InputDecoration(fillColor: Colors.white, filled: true, contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0), border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), ), labelText: 'Special Features'),
+      //decoration: InputDecoration(labelText: 'Special Features'),
       //initialValue: _curretCar.MPG,
       keyboardType: TextInputType.text,
-      style: TextStyle(fontSize: 20),
+      style: TextStyle(fontSize: 16,),
       validator: (String value){
         if(value.isEmpty){
           return 'Special Features are required';
@@ -328,26 +384,27 @@ class _CarFormState extends State<CarForm>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-
-      appBar: AppBar(title: Text('Car Form'), backgroundColor: Colors.indigo, leading: GestureDetector(
+      appBar: AppBar(title: Text('Car Form'), backgroundColor: Color(0xFF01579B), leading: GestureDetector(
         onTap: (){Navigator.pop(context, false);},
         child: Icon(
             Icons.arrow_back_ios
         ),
       ),),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(32 ),
-        child: Form(
+      body: Container(
+
+        padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+        child: SingleChildScrollView(
           key: _formKey,
-          autovalidate: true,
+          //autovalidate: true,
           child:  Column(children: <Widget>[
+
             _showImage(),
             SizedBox(height: 16,),
-            Text(
-              "Add Vehicle",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 30),
-            ),
+//            Text(
+//              "Add Vehicle",
+//              textAlign: TextAlign.center,
+//              style: TextStyle(fontSize: 30),
+//            ),
             SizedBox(height: 16,),
             ButtonTheme(
               child: RaisedButton(
@@ -355,36 +412,49 @@ class _CarFormState extends State<CarForm>{
                 onPressed: () => getLocalImage(),
                 child: Text(
                   'Select Image',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(color: Colors.white, ),
                 ),
             ),
             ),
+            SizedBox(height: 16,),
             _buildColourField(),
+            SizedBox(height: 20,),
             _buildMPGField(),
+            SizedBox(height: 20,),
             _buildModelField(),
+            SizedBox(height: 20,),
             _buildNoOfSheetsField(),
+            SizedBox(height: 20,),
             _buildPriceField(),
+            SizedBox(height: 20,),
             _buildSpecialFeaturesField(),
             SizedBox(height: 16,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-              ButtonTheme(
-                child: RaisedButton(
+                  ButtonTheme(
+                    minWidth: 200,
+           height: 50,
+           child: RaisedButton(
+             color:Color(0xFF0D47A1),
+                  child: Text("Add Vehicle".toUpperCase(),
+                      style: TextStyle(fontSize: 16, color: Colors.white)),
                 onPressed: (){
-                  //uploadImage();
+                  uploadImage();
                   showDialog(context: context,
                     builder: (BuildContext context) => alertBox());
                   
                 },
-                child: Text(
-                  'Add Vehicle',
-                  style: TextStyle(color: Colors.white, ),
-                  textAlign: TextAlign.center,
-                ),
-              ),)
+                  shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(18.0),
+                      side: BorderSide(color: Color(0xFF01579B))
+                  ),
+
+              )),
             ],
-            )
+            ),
+
+
           ],
             ),
       ),
