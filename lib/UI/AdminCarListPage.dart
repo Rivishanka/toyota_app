@@ -131,7 +131,7 @@ class AdminCarListPageState extends State<AdminCarListPage>{
                                           borderSide: BorderSide(color: Colors.blueAccent),
                                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
                                           onPressed: (){
-                                            Navigator.push(context, MaterialPageRoute(builder: (context) => MoreDetailsPage()));
+                                            Navigator.push(context, MaterialPageRoute(builder: (context) => MoreDetailsPage(car: car)));
                                           },),
 
 //                                        new FloatingActionButton(
