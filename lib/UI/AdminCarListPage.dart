@@ -7,6 +7,7 @@ import 'package:toyota_app/UI/CarForm.dart';
 import 'package:toyota_app/UI/MoreDetailsPage.dart';
 import 'package:toyota_app/Notifier/CarNotifier.dart';
 import 'package:toyota_app/Models/Car.dart';
+import 'package:toyota_app/UI/PopularityOfVehicles.dart';
 
 class AdminCarListPage extends StatefulWidget{
   @override
@@ -32,7 +33,7 @@ class AdminCarListPageState extends State<AdminCarListPage>{
 
         appBar: AppBar(
           title: Text("Toyota"),
-          backgroundColor: Colors.indigo,
+          backgroundColor: Color(0xFF01579B),
           leading: GestureDetector(
             onTap: (){Navigator.pop(context, false);},
             child: Icon(
@@ -43,9 +44,13 @@ class AdminCarListPageState extends State<AdminCarListPage>{
             Padding(
               padding: EdgeInsets.only(right: 20.0),
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(this.context).push(
+                      MaterialPageRoute(builder: (context) => PopularityVehicles())
+                  );
+                },
                 child: Icon(
-                    Icons.search
+                    Icons.favorite_border
                 ),
               ),
             )
