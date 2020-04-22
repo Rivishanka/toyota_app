@@ -384,15 +384,36 @@ class _CarFormState extends State<CarForm>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      appBar: AppBar(title: Text('Car Form'), backgroundColor: Color(0xFF01579B), leading: GestureDetector(
+      resizeToAvoidBottomPadding: false,
+      appBar: AppBar(title: Text('Car Form'),
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: <Color>[
+                    Colors.blue,
+                    Colors.black
+                  ]
+              )
+          ),
+        ),
+
+        leading: GestureDetector(
         onTap: (){Navigator.pop(context, false);},
         child: Icon(
             Icons.arrow_back_ios
         ),
       ),),
       body: Container(
-
+        width: double.infinity,
         padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/img/newbackground.jpg"),fit:BoxFit.fill
+            )
+        ),
+
         child: SingleChildScrollView(
           key: _formKey,
           //autovalidate: true,
@@ -408,7 +429,11 @@ class _CarFormState extends State<CarForm>{
             SizedBox(height: 16,),
             ButtonTheme(
               child: RaisedButton(
-
+                shape: new RoundedRectangleBorder(
+                    borderRadius: new BorderRadius.circular(25.0),
+                    side: BorderSide(color: Colors.white)
+                ),
+                color: Colors.blue[900],
                 onPressed: () => getLocalImage(),
                 child: Text(
                   'Select Image',
@@ -436,7 +461,8 @@ class _CarFormState extends State<CarForm>{
                     minWidth: 200,
            height: 50,
            child: RaisedButton(
-             color:Color(0xFF0D47A1),
+
+
                   child: Text("Add Vehicle".toUpperCase(),
                       style: TextStyle(fontSize: 16, color: Colors.white)),
                 onPressed: (){
@@ -445,10 +471,11 @@ class _CarFormState extends State<CarForm>{
                     builder: (BuildContext context) => alertBox());
                   
                 },
-                  shape: RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(18.0),
-                      side: BorderSide(color: Color(0xFF01579B))
-                  ),
+             shape: new RoundedRectangleBorder(
+                 borderRadius: new BorderRadius.circular(25.0),
+                 side: BorderSide(color: Colors.white)
+             ),
+             color: Colors.blue[900],
 
               )),
             ],

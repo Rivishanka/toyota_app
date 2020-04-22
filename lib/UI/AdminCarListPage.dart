@@ -33,7 +33,19 @@ class AdminCarListPageState extends State<AdminCarListPage>{
 
         appBar: AppBar(
           title: Text("Toyota"),
-          backgroundColor: Color(0xFF01579B),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: <Color>[
+                  Colors.blue,
+                  Colors.black
+                ]
+              )
+            ),
+          ),
+
           leading: GestureDetector(
             onTap: (){Navigator.pop(context, false);},
             child: Icon(
@@ -131,7 +143,7 @@ class AdminCarListPageState extends State<AdminCarListPage>{
                                           borderSide: BorderSide(color: Colors.blueAccent),
                                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
                                           onPressed: (){
-                                            Navigator.push(context, MaterialPageRoute(builder: (context) => MoreDetailsPage()));
+                                            Navigator.push(context, MaterialPageRoute(builder: (context) => MoreDetailsPage(car: car)));
                                           },),
 
 //                                        new FloatingActionButton(

@@ -39,17 +39,8 @@ class _LoginPageState extends State<LoginTestPage>{
 
         width: double.infinity,
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                colors: [
-                  //Colors.blue[900],
-                  Colors.cyan[400],
-                  //Colors.blue[700],
-                  Colors.lightBlue[800],
-                  Colors.blue[900],
-                  Colors.white,
-                  //Colors.grey[700]
-                ]
+            image: DecorationImage(
+              image: AssetImage("assets/img/newbackground.jpg"),fit:BoxFit.fill
             )
         ),
 
@@ -130,26 +121,15 @@ class _LoginPageState extends State<LoginTestPage>{
             SizedBox(height: 40,),
             FadeAnimationScreen(1.8, Center(
               child: Container(
-                  height: 50.0,
                   width: 250.0,
-                  padding: EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-
-                      gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          colors: [
-                            //Colors.blue[900],
-                            Colors.black,
-                            Colors.blue[900],
-                            Colors.lightBlue[800],
-
-                          ]
-                      )
-
-                  ),
-                  child: OutlineButton(
-                    child: Center(child: Text("Login", style: TextStyle(color: Colors.white.withOpacity(.7)),)),
+                  height: 50.0,
+                  child: RaisedButton(
+                    shape: new RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(25.0),
+                      side: BorderSide(color: Colors.white)
+                    ),
+                    color: Colors.blue[900],
+                    child: Center(child: Text("Login", style: TextStyle(color: Colors.white),)),
                     onPressed: () async{
                     //  if(emailController.text.isEmpty || passwordController.text.isEmpty){
                     //    print("Email and password can not be empty");
@@ -179,7 +159,7 @@ class _LoginPageState extends State<LoginTestPage>{
             )),
             FadeAnimationScreen(1.5,   SizedBox(height: 50,
               child: Center(
-                child: Text("Forget Password ?", style: TextStyle(color: Colors.grey,),),
+                child: Text("Forget Password ?", style: TextStyle(color: Colors.white,fontFamily: 'Courgette'),),
               ),),
             ),
 
@@ -189,25 +169,15 @@ class _LoginPageState extends State<LoginTestPage>{
             SizedBox(height: 40,),
             FadeAnimationScreen(1.8, Center(
               child: Container(
-                  height: 50.0,
                   width: 250.0,
-                  padding: EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-
-                      gradient: LinearGradient(
-                          begin: Alignment.topCenter,
-                          colors: [
-                            //Colors.blue[900],
-                            Colors.black,
-                            Colors.blue[900],
-                            Colors.lightBlue[800],
-
-                          ]
-                      )
-                  ),
-                  child: OutlineButton(
-                    child: Center(child: Text("Sign Up", style: TextStyle(color: Colors.white.withOpacity(.7)),)),
+                  height: 50.0,
+                  child: RaisedButton(
+                    shape: new RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(25.0),
+                        side: BorderSide(color: Colors.white)
+                    ),
+                    color: Colors.blue[900],
+                    child: Center(child: Text("Sign Up", style: TextStyle(color: Colors.white),)),
                     onPressed: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage()));
                     },

@@ -32,26 +32,15 @@ class _PopularityVehiclesState extends State<PopularityVehicles> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Toyota'), backgroundColor: Color(0xFF01579B)),
+      appBar: AppBar(title: Text('Toyota'), backgroundColor: Colors.black),
       body: Container(
+
         padding: EdgeInsets.all(30),
 
         width: double.infinity,
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                colors: [
-                  //Colors.blue[900],
-
-                  Colors.cyan[400],
-                  //Colors.blue[700],
-                  Colors.lightBlue[800],
-                  //Colors.purple,
-                  Colors.blue[900],
-                  Colors.white,
-
-                  //Colors.grey[700]
-                ]
+            image: DecorationImage(
+                image: AssetImage("assets/img/newbackground.jpg"),fit:BoxFit.fill
             )
         ),
         child: _buildBody(context),
