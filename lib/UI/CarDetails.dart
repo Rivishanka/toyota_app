@@ -7,7 +7,7 @@ class MoreCarDetailsPage extends StatelessWidget {
   final Car car;
 
   const MoreCarDetailsPage({Key key, @required this.car}) : super(key: key);
- // static final String path = "lib/src/pages/hotel/details.dart";
+  // static final String path = "lib/src/pages/hotel/details.dart";
   //final String image = "assets/hotel/room3.jpg";
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class MoreCarDetailsPage extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal:16.0),
                   child: Text(
                     car.Model,
-                    style: TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold,fontFamily: 'Amiri_Bold'),
+                    style: TextStyle(color: Colors.white, fontSize: 28.0, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Row(
@@ -74,7 +74,7 @@ class MoreCarDetailsPage extends StatelessWidget {
                                   TextSpan(
                                       text:"MILES PER GALOON : "+car.MPG
                                   )
-                                ]), style: TextStyle(color: Colors.grey, fontSize: 14.0,),)
+                                ]), style: TextStyle(color: Colors.grey, fontSize: 14.0),)
                               ],
                             ),
                           ),
@@ -101,7 +101,7 @@ class MoreCarDetailsPage extends StatelessWidget {
                           color: Color(0xFF0D47A1),
                           textColor: Colors.white,
                           child: Text("Check Popularity", style: TextStyle(
-                              fontWeight: FontWeight.normal,
+                              fontWeight: FontWeight.normal
                           ),),
                           padding: const EdgeInsets.symmetric(
                             vertical: 16.0,
@@ -117,24 +117,22 @@ class MoreCarDetailsPage extends StatelessWidget {
                       const SizedBox(height: 30.0),
                       Text("Sheets".toUpperCase(), style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          fontSize: 16.0,
-                          fontFamily: 'Amiri_Bold',
+                          fontSize: 14.0,
                           color: Color(0xFF0D47A1)
                       ),),
                       const SizedBox(height: 10.0),
                       Text(
                         car.NoOfSheets, textAlign: TextAlign.justify, style: TextStyle(
                           fontWeight: FontWeight.w300,
-                          fontSize: 16.0
+                          fontSize: 14.0
                       ),),
                       const SizedBox(height: 10.0),
 
 
-                      const SizedBox(height: 20.0),
+                      const SizedBox(height: 30.0),
                       Text("Available Colours".toUpperCase(), style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          fontSize: 16.0,
-                          fontFamily: 'Amiri_Bold',
+                          fontSize: 14.0,
                           color: Color(0xFF0D47A1)
                       ),),
                       const SizedBox(height: 10.0),
@@ -148,11 +146,10 @@ class MoreCarDetailsPage extends StatelessWidget {
 
 
 
-                      const SizedBox(height: 20.0),
+                      const SizedBox(height: 30.0),
                       Text("Feature Description".toUpperCase(), style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 14.0,
-                          fontFamily: 'Amiri_Bold',
                           color: Color(0xFF0D47A1)
                       ),),
                       const SizedBox(height: 10.0),
@@ -177,14 +174,11 @@ class MoreCarDetailsPage extends StatelessWidget {
               backgroundColor: Colors.transparent,
               elevation: 0,
               centerTitle: true,
-              leading: GestureDetector(
-                onTap: (){Navigator.pop(context, false);},
-                child: Icon(
-                    Icons.arrow_back_ios
-                ),
-              ),
+              title: Text("CAR DETAILS",style: TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.normal
+              ),),
             ),
-
           ),
 
         ],

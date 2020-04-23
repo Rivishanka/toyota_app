@@ -100,37 +100,15 @@ class AdminCarListPageState extends State<AdminCarListPage>{
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              new Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: <Widget>[
-                                new OutlineButton(
-                                  color: Colors.purple,
-                                    splashColor: Colors.blue,
-                                    borderSide: BorderSide(color: Colors.blueAccent),
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-                                    onPressed: (){
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) => MoreCarDetailsPage(car: car)));
-                                    },
 
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Text("Details"),
-                                      Icon(Icons.arrow_forward_ios),
-
-                                    ],
-                                  ),
-                                )
-                                ],
-                              ),
-                              new ClipRRect(
+                              new GestureDetector(
+                                onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => MoreCarDetailsPage(car: car)));
+                                },
                                 child: new Image.network(
                                   '${mypost['Image']}',
                                   fit: BoxFit.fill,
-                                ),
-                                borderRadius: BorderRadius.only(
-                                  topLeft: new Radius.circular(16.0),
-                                  topRight: new Radius.circular(16.0),
+
                                 ),
                               ),
                               new Padding(
@@ -148,10 +126,6 @@ class AdminCarListPageState extends State<AdminCarListPage>{
                                       children: <Widget>[
                                         new Text('${mypost['Price']}',
                                           style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold,color: Colors.blueGrey,),),
-
-
-
-
 
 
                                         new OutlineButton(
