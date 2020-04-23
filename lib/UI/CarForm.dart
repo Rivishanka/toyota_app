@@ -332,12 +332,7 @@ class _CarFormState extends State<CarForm>{
           ),
         ),
 
-        leading: GestureDetector(
-        onTap: (){Navigator.pop(context, false);},
-        child: Icon(
-            Icons.arrow_back_ios
-        ),
-      ),),
+      ),
       body: SingleChildScrollView(
 
         padding: EdgeInsets.all(30),
