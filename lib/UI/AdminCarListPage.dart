@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:toyota_app/API/VehicleAPI.dart';
 import 'package:toyota_app/UI/CarDetails.dart';
 import 'package:toyota_app/UI/CarForm.dart';
@@ -32,6 +33,7 @@ class AdminCarListPageState extends State<AdminCarListPage>{
       actions: <Widget>[
         FlatButton(child: Text('No'),
           onPressed: (){
+            Navigator.pop(context);
             //Navigator.of(this.context, rootNavigator: true).pop();
           },),
         FlatButton(child: Text('Yes'),
@@ -41,13 +43,19 @@ class AdminCarListPageState extends State<AdminCarListPage>{
             Navigator.of(this.context).push(
                 MaterialPageRoute(builder: (context) => AdminCarListPage())
             );
-
+            showDeleteToast();
           },
         )
       ],
     );
   }
 
+  void showDeleteToast(){
+    Fluttertoast.showToast(
+      msg: "Successfully Deleted!!",
+      toastLength: Toast.LENGTH_LONG,
+    );
+  }
 
   @override
   Widget build(BuildContext context){
@@ -139,7 +147,7 @@ class AdminCarListPageState extends State<AdminCarListPage>{
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     new Text('${mypost['Model']}',
-                                      style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold,fontFamily: 'Quintessential'),
+                                      style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold,fontFamily: 'Amiri_Bold'),
                                     ),
                                     new SizedBox(height: 16.0),
                                     new Row(
