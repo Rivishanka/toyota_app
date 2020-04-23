@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:toyota_app/API/VehicleAPI.dart';
 import 'package:toyota_app/Models/Car.dart';
 import 'package:bordered_text/bordered_text.dart';
@@ -60,6 +61,12 @@ class _UpdateCarDetailsState extends State<UpdateCarDetails>{
 
   }
 
+  void showUpdatedToast(){
+    Fluttertoast.showToast(
+        msg: "Update Successfully!!",
+        toastLength: Toast.LENGTH_LONG,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -89,6 +96,7 @@ class _UpdateCarDetailsState extends State<UpdateCarDetails>{
             Icons.arrow_back_ios
         ),)),
       body: SingleChildScrollView(
+        padding: EdgeInsets.all(30),
         child: Container(
           padding: EdgeInsets.all(30),
           width: double.infinity,
@@ -193,7 +201,8 @@ class _UpdateCarDetailsState extends State<UpdateCarDetails>{
                 onPressed: (){
 
                   api.update(car, Colour, MPG, Model, NoOfSheets, Price, SpecialFeatures);
-
+                  showUpdatedToast();
+                  Navigator.pop(context);
                 },
                 shape: new RoundedRectangleBorder(
                     borderRadius: new BorderRadius.circular(25.0),
