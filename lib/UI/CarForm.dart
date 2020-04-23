@@ -20,7 +20,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 
-// This file is for adding the vehicle details
+// This file is for adding the vehicle details from the Admin level
 
 class CarForm extends StatefulWidget {
 
