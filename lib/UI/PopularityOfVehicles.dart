@@ -32,7 +32,27 @@ class _PopularityVehiclesState extends State<PopularityVehicles> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Toyota'), backgroundColor: Colors.black),
+      appBar: AppBar(
+          title: Text('Toyota'),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: <Color>[
+                      Colors.blue,
+                      Colors.black
+                    ]
+                )
+            ),
+          ),
+        leading: GestureDetector(
+          onTap: (){Navigator.pop(context, false);},
+          child: Icon(
+              Icons.arrow_back_ios
+          ),
+        ),
+      ),
       body: Container(
 
         padding: EdgeInsets.all(30),

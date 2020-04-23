@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:toyota_app/UI/MoreDetailsPage.dart';
+import 'package:toyota_app/UI/CarDetails.dart';
+//import 'package:toyota_app/UI/MoreDetailsPage.dart';
 
 
 class CarListPage extends StatefulWidget{
@@ -115,7 +116,7 @@ class CarListPageState extends State<CarListPage>{
                                           borderSide: BorderSide(color: Colors.blueAccent),
                                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
                                           onPressed: (){
-                                            Navigator.push(context, MaterialPageRoute(builder: (context) => MoreDetailsPage()));
+                                            Navigator.push(context, MaterialPageRoute(builder: (context) => MoreCarDetailsPage()));
                                           },),
                                       ],
                                     )

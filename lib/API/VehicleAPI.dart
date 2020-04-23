@@ -79,6 +79,15 @@ class VehicleAPI {
       },
     );
   }
+  update(Car car, String Colour, String MPG, String Model, String NoOfSheets, String Price, String SpecialFeatures){
+    try{
+      Firestore.instance.runTransaction((transaction) async {
+        await transaction.update(car.reference, {'Colour': Colour, 'MPG': MPG, 'Model': Model, 'NoOfSheets': NoOfSheets,  'Price': Price, 'SpecialFeatures': SpecialFeatures});
+      });
+    }catch(e){
+      print(e.toString());
+    }
+  }
 
 
 

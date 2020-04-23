@@ -81,6 +81,18 @@ flutter:
      - family: Quintessential
        fonts:
          - asset: fonts/Quintessential-Regular.ttf
+     - family: Amiri
+       fonts:
+         - asset: fonts/Amiri-Regular.ttf
+     - family: Amiri_Bold
+       fonts:
+         - asset: fonts/Amiri-Bold.ttf
+     - family: Amiri_Italic
+       fonts:
+         - asset: fonts/Amiri-Italic.ttf
+     - family: Amiri_BoldItalic
+       fonts:
+         - asset: fonts/Amiri-BoldItalic.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

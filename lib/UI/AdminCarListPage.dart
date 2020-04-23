@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:toyota_app/API/VehicleAPI.dart';
+import 'package:toyota_app/UI/CarDetails.dart';
 import 'package:toyota_app/UI/CarForm.dart';
-import 'package:toyota_app/UI/MoreDetailsPage.dart';
+//import 'package:toyota_app/UI/MoreDetailsPage.dart';
 import 'package:toyota_app/Notifier/CarNotifier.dart';
 import 'package:toyota_app/Models/Car.dart';
 import 'package:toyota_app/UI/PopularityOfVehicles.dart';
+import 'package:toyota_app/UI/UpdateCarDetails.dart';
 
 class AdminCarListPage extends StatefulWidget{
   @override
@@ -35,17 +37,16 @@ class AdminCarListPageState extends State<AdminCarListPage>{
           title: Text("Toyota"),
           flexibleSpace: Container(
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: <Color>[
-                  Colors.blue,
-                  Colors.black
-                ]
-              )
+                gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: <Color>[
+                      Colors.blue,
+                      Colors.black
+                    ]
+                )
             ),
           ),
-
           leading: GestureDetector(
             onTap: (){Navigator.pop(context, false);},
             child: Icon(
@@ -99,6 +100,29 @@ class AdminCarListPageState extends State<AdminCarListPage>{
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
+                              new Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                new OutlineButton(
+                                  color: Colors.purple,
+                                    splashColor: Colors.blue,
+                                    borderSide: BorderSide(color: Colors.blueAccent),
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+                                    onPressed: (){
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => MoreCarDetailsPage(car: car)));
+                                    },
+
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Row(
+                                    children: <Widget>[
+                                      Text("Details"),
+                                      Icon(Icons.arrow_forward_ios),
+
+                                    ],
+                                  ),
+                                )
+                                ],
+                              ),
                               new ClipRRect(
                                 child: new Image.network(
                                   '${mypost['Image']}',
@@ -116,14 +140,14 @@ class AdminCarListPageState extends State<AdminCarListPage>{
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     new Text('${mypost['Model']}',
-                                      style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+                                      style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold,fontFamily: 'Quintessential'),
                                     ),
                                     new SizedBox(height: 16.0),
                                     new Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
                                         new Text('${mypost['Price']}',
-                                          style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold,color: Colors.blueGrey),),
+                                          style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold,color: Colors.blueGrey,),),
 
 
 
@@ -131,7 +155,7 @@ class AdminCarListPageState extends State<AdminCarListPage>{
 
 
                                         new OutlineButton(
-                                          child: Text('Details',
+                                          child: Text('Update',
                                               style: TextStyle(
                                                   color: Colors.black,
                                                   fontWeight: FontWeight.bold,
@@ -143,19 +167,8 @@ class AdminCarListPageState extends State<AdminCarListPage>{
                                           borderSide: BorderSide(color: Colors.blueAccent),
                                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
                                           onPressed: (){
-                                            Navigator.push(context, MaterialPageRoute(builder: (context) => MoreDetailsPage(car: car)));
+                                            Navigator.push(context, MaterialPageRoute(builder: (context) => UpdateCarDetails(car: car)));
                                           },),
-
-//                                        new FloatingActionButton(
-//                                          //icon: Icon(Icons.delete, color: Colors.red,),
-//                                          backgroundColor: Colors.white,
-//                                          child: Icon(Icons.delete),
-//                                          foregroundColor: Colors.red,
-//                                          onPressed: (){
-//                                            api.delete(car);
-//                                           // Navigator.push(context, MaterialPageRoute(builder: (context) => MoreDetailsPage()));
-//                                          },),
-
 
                                         new OutlineButton(
                                           child: Text('Delete',
@@ -195,7 +208,7 @@ class AdminCarListPageState extends State<AdminCarListPage>{
       floatingActionButton: FloatingActionButton(
         //onPressed: _incrementCounter,
         //tooltip: 'Increment',
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.blue[900],
         child: Icon(Icons.add),
         foregroundColor: Colors.white,
         onPressed: (){

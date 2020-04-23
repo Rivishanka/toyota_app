@@ -149,10 +149,10 @@ class _SplashScreenState extends State<HomePage2> with TickerProviderStateMixin{
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   FadeAnimationScreen(1, Text("Welcome",
-                    style: TextStyle(color: Colors.white, fontSize: 50),)),
+                    style: TextStyle(color: Colors.white, fontSize: 50,fontFamily: 'Quintessential'),)),
                   SizedBox(height: 15,),
                   FadeAnimationScreen(1.3, Text("Toyota is the global market leader in sales of hybrid electric vehicles,\nand one of the largest companies to encourage the mass-market adoption of hybrid vehicles across the globe.",
-                    style: TextStyle(color: Colors.white.withOpacity(.7), height: 1.4, fontSize: 20),)),
+                    style: TextStyle(color: Colors.white.withOpacity(.7), height: 1.4, fontSize: 20,fontFamily: 'Courgette'),)),
                   SizedBox(height: 180,),
                   FadeAnimationScreen(1.6, AnimatedBuilder(
                     animation: _scaleController,

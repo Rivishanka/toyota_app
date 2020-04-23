@@ -251,54 +251,6 @@ class _CarFormState extends State<CarForm>{
     );
   }
 
-
-
-
-
-//  Widget _buildNoOfSheetsField(){
-//    return Container(
-//      decoration: BoxDecoration(
-//          borderRadius: BorderRadius.circular(10),
-//          color: Colors.white,
-//      ),
-//      child: TextField(
-//        decoration: InputDecoration(
-//            border: InputBorder.none,
-//            contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-//            hintStyle: TextStyle(color: Colors.grey.withOpacity(.8),),
-//            hintText: "No of Sheets",
-//        ),
-//      ),
-//    );
-//
-//
-//
-//    return TextFormField(
-//      controller: controller4,
-//      //decoration: InputDecoration(fillColor: Colors.black12, filled: true,contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0), border: OutlineInputBorder(borderRadius: BorderRadius.circular(10),),labelText: 'No of Sheets',),
-//      // decoration: InputDecoration(labelText: 'No of Sheets'),
-//      //initialValue: _curretCar.MPG,
-//      keyboardType: TextInputType.text,
-//      style: TextStyle(fontSize: 20),
-//      validator: (String value){
-//        if(value.isEmpty){
-//          return 'No of Sheets are required';
-//        }
-//        return null;
-//      },
-//      onSaved: (String value){
-//        //  _curretCar.NoOfSheets = value;
-//      },
-//    );
-//  }
-
-
-
-
-
-
-
-
   Widget _buildNoOfSheetsField(){
     return TextFormField(
       controller: controller4,
@@ -406,12 +358,14 @@ class _CarFormState extends State<CarForm>{
         ),
       ),),
       body: Container(
+        padding: EdgeInsets.all(30),
         width: double.infinity,
-        padding: EdgeInsets.fromLTRB(30, 10, 30, 10),
         decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage("assets/img/newbackground.jpg"),fit:BoxFit.fill
-            )
+          gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              stops: [0.5,1],
+              colors: [Colors.white,Colors.blue[900]]),
         ),
 
         child: SingleChildScrollView(
