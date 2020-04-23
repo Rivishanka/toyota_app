@@ -17,6 +17,7 @@ import 'package:toyota_app/API/VehicleAPI.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 
 // This file is for adding the vehicle details
@@ -283,16 +284,28 @@ class _CarFormState extends State<CarForm>{
       actions: <Widget>[
         FlatButton(child: Text('No'),
         onPressed: (){
+          Navigator.pop(this.context);
           Navigator.of(this.context, rootNavigator: true).pop();
         },),
         FlatButton(child: Text('Yes'),
-          onPressed: (){
+          onPressed: () async{
+
           uploadImage();
+          Navigator.pop(this.context);
+          Fluttertoast.showToast(
+              msg: "Vehicle is successfully added !",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.lightBlueAccent,
+              textColor: Colors.white,
+              fontSize: 16.0
+          );
+          await new Future.delayed(const Duration(seconds: 3));
+          Navigator.of(this.context).push(
+              MaterialPageRoute(builder: (context) => AdminCarListPage())
+          );
 
-
-//          Navigator.of(this.context).push(
-//              MaterialPageRoute(builder: (context) => AdminCarListPage())
-//          );
 
           },
         )

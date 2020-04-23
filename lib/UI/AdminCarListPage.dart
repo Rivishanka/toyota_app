@@ -129,7 +129,6 @@ class AdminCarListPageState extends State<AdminCarListPage>{
                                 child: new Image.network(
                                   '${mypost['Image']}',
                                   fit: BoxFit.fill,
-
                                 ),
                               ),
                               new Padding(
