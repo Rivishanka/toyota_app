@@ -413,14 +413,13 @@ class _CarFormState extends State<CarForm>{
                 children: <Widget>[
                   ButtonTheme(
                     minWidth: 200,
-           height: 50,
+           height: 40,
            child: RaisedButton(
 
 
                   child: Text("Add Vehicle".toUpperCase(),
                       style: TextStyle(fontSize: 16, color: Colors.white)),
                 onPressed: (){
-                  uploadImage();
                   showDialog(context: context,
                     builder: (BuildContext context) => alertBox());
                   

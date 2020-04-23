@@ -26,6 +26,27 @@ class AdminCarListPageState extends State<AdminCarListPage>{
 
   }
 
+  Widget alertBox(Car car){
+    return AlertDialog(
+      title: Text("Do you want to delete this vehicle?"),
+      actions: <Widget>[
+        FlatButton(child: Text('No'),
+          onPressed: (){
+            //Navigator.of(this.context, rootNavigator: true).pop();
+          },),
+        FlatButton(child: Text('Yes'),
+          onPressed: (){
+            //uploadImage();
+            api.delete(car);
+            Navigator.of(this.context).push(
+                MaterialPageRoute(builder: (context) => AdminCarListPage())
+            );
+
+          },
+        )
+      ],
+    );
+  }
 
 
   @override
@@ -128,39 +149,59 @@ class AdminCarListPageState extends State<AdminCarListPage>{
                                           style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold,color: Colors.blueGrey,),),
 
 
-                                        new OutlineButton(
-                                          child: Text('Update',
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontFamily: 'Montserrat'
-                                              )
-                                          ),
-                                          color: Colors.purple,
-                                          splashColor: Colors.blue,
-                                          borderSide: BorderSide(color: Colors.blueAccent),
-                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-                                          onPressed: (){
+                                        IconButton(
+                                          color: Colors.yellow,
+                                          icon: Icon(Icons.mode_edit),
+                                          onPressed: () {
                                             Navigator.push(context, MaterialPageRoute(builder: (context) => UpdateCarDetails(car: car)));
-                                          },),
+                                          },
+                                        ),
 
-                                        new OutlineButton(
-                                          child: Text('Delete',
-                                              style: TextStyle(
-                                                 // backgroundColor: Colors.red,
-                                                  color: Colors.red,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontFamily: 'Montserrat'
-                                              )
-                                          ),
-                                          //color: Colors.purple,
-                                          //splashColor: Colors.blue,
-                                          borderSide: BorderSide(color: Colors.redAccent),
-                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-                                          onPressed: (){
-                                            api.delete(car);
-                                            //Navigator.push(context, MaterialPageRoute(builder: (context) => MoreDetailsPage()));
-                                          },),
+
+                                        IconButton(
+                                          color: Colors.red,
+                                          icon: Icon(Icons.delete),
+                                          onPressed: () {
+                                            showDialog(context: context,
+                                                builder: (BuildContext context) => alertBox(car));
+                                            //api.delete(car);
+                                          },
+                                        ),
+
+
+//                                        new OutlineButton(
+//                                          child: Text('Update',
+//                                              style: TextStyle(
+//                                                  color: Colors.black,
+//                                                  fontWeight: FontWeight.bold,
+//                                                  fontFamily: 'Montserrat'
+//                                              )
+//                                          ),
+//                                          color: Colors.purple,
+//                                          splashColor: Colors.blue,
+//                                          borderSide: BorderSide(color: Colors.blueAccent),
+//                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+//                                          onPressed: (){
+//                                            Navigator.push(context, MaterialPageRoute(builder: (context) => UpdateCarDetails(car: car)));
+//                                          },),
+
+//                                        new OutlineButton(
+//                                          child: Text('Delete',
+//                                              style: TextStyle(
+//                                                 // backgroundColor: Colors.red,
+//                                                  color: Colors.red,
+//                                                  fontWeight: FontWeight.bold,
+//                                                  fontFamily: 'Montserrat'
+//                                              )
+//                                          ),
+//                                          //color: Colors.purple,
+//                                          //splashColor: Colors.blue,
+//                                          borderSide: BorderSide(color: Colors.redAccent),
+//                                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+//                                          onPressed: (){
+//                                            api.delete(car);
+//                                            //Navigator.push(context, MaterialPageRoute(builder: (context) => MoreDetailsPage()));
+//                                          },),
 
 
                                       ],
