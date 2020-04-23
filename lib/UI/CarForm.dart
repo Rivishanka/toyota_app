@@ -109,39 +109,6 @@ class _CarFormState extends State<CarForm>{
   }
 
   saveVehicle(String url) {
-//    if(!_formKey.currentState.validate()){
-//      return;
-//    }
-//    _formKey.currentState.save();
-//
-//
-//    api.uploadVehicleAndImage(_curretCar, _imageFile);
-//    print("mpg ${_curretCar.MPG}");
-
-//
-//    if ( _imageFile!= null) {
-//      print("Uploading image");
-//
-//      var fileExtension = path.extension(_imageFile.path);
-//      var uuid = Uuid().v4();
-//
-//      final StorageReference firebaseStorageRef = FirebaseStorage.instance.ref()
-//          .child('Toyota/$uuid$fileExtension');
-//
-//      await firebaseStorageRef
-//          .putFile(_imageFile)
-//          .onComplete
-//          .catchError(
-//              (onError) {
-//            return false;
-//          });
-//
-//      String url = await firebaseStorageRef.getDownloadURL();
-//      print("download url: $url");
-//    }
-
-
-
 
     Car user = Car(Colour: controller1.text, Image: url, MPG: controller2.text, Model: controller3.text, NoOfSheets: controller4.text, Price: controller5.text, SpecialFeatures: controller6.text);
     api.addCar(user);
@@ -322,9 +289,10 @@ class _CarFormState extends State<CarForm>{
           onPressed: (){
           uploadImage();
 
-          Navigator.of(this.context).push(
-              MaterialPageRoute(builder: (context) => AdminCarListPage())
-          );
+
+//          Navigator.of(this.context).push(
+//              MaterialPageRoute(builder: (context) => AdminCarListPage())
+//          );
 
           },
         )
@@ -336,7 +304,7 @@ class _CarFormState extends State<CarForm>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomPadding: true,
       appBar: AppBar(title: Text('Car Form'),
         flexibleSpace: Container(
           decoration: BoxDecoration(
@@ -357,18 +325,19 @@ class _CarFormState extends State<CarForm>{
             Icons.arrow_back_ios
         ),
       ),),
-      body: Container(
-        padding: EdgeInsets.all(30),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              stops: [0.5,1],
-              colors: [Colors.white,Colors.blue[900]]),
-        ),
+      body: SingleChildScrollView(
 
-        child: SingleChildScrollView(
+        padding: EdgeInsets.all(30),
+        child: Container(
+          padding: EdgeInsets.all(30),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                stops: [0.5,1],
+                colors: [Colors.white,Colors.blue[900]]),
+          ),
           key: _formKey,
           //autovalidate: true,
           child:  Column(children: <Widget>[
@@ -425,7 +394,7 @@ class _CarFormState extends State<CarForm>{
                   
                 },
              shape: new RoundedRectangleBorder(
-                 borderRadius: new BorderRadius.circular(25.0),
+                 borderRadius: new BorderRadius.circular(18.0),
                  side: BorderSide(color: Colors.white)
              ),
              color: Colors.blue[900],

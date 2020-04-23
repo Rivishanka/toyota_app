@@ -90,12 +90,24 @@ class _PopularityVehiclesState extends State<PopularityVehicles> {
     return Padding(
       padding: EdgeInsets.all(6.0),
       child: Container(
+
+        padding: EdgeInsets.all(30),
+        width: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: new BorderRadius.circular(25.0),
+          gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              stops: [0.5,1],
+              colors: [Colors.white,Colors.lightBlue]),
+        ),
+
         child: Center(
           child: Column(
             children: <Widget>[
               Text(
                 'Vehicles Popularity',
-                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold, color: Colors.blue[900]),
               ),
               SizedBox(
                 height: 10.0,
@@ -113,7 +125,7 @@ class _PopularityVehiclesState extends State<PopularityVehicles> {
                     cellPadding:
                       new EdgeInsets.only(right: 6.0, bottom: 4.0, top: 8.0),
                     entryTextStyle: charts.TextStyleSpec(
-                      color: charts.MaterialPalette.white,
+                      color: charts.MaterialPalette.black,
                       fontWeight: 'Georgia',
                       fontSize: 18
                     ),
