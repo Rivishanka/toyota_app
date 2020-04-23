@@ -321,7 +321,7 @@ class _CarFormState extends State<CarForm>{
         FlatButton(child: Text('Yes'),
           onPressed: (){
           uploadImage();
-
+          showAddSuccessfullyToast();
           Navigator.of(this.context).push(
               MaterialPageRoute(builder: (context) => AdminCarListPage())
           );
@@ -332,6 +332,12 @@ class _CarFormState extends State<CarForm>{
     );
   }
 
+  void showAddSuccessfullyToast(){
+    Fluttertoast.showToast(
+      msg: "Successfully Added!!",
+      toastLength: Toast.LENGTH_LONG,
+    );
+  }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -422,7 +428,7 @@ class _CarFormState extends State<CarForm>{
                 onPressed: (){
                   showDialog(context: context,
                     builder: (BuildContext context) => alertBox());
-                  
+
                 },
              shape: new RoundedRectangleBorder(
                  borderRadius: new BorderRadius.circular(25.0),
