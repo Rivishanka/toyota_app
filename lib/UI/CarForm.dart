@@ -325,18 +325,13 @@ class _CarFormState extends State<CarForm>{
           Navigator.of(this.context).push(
               MaterialPageRoute(builder: (context) => AdminCarListPage())
           );
-          showAddSuccessfullyToast();
+
           },
         )
       ],
     );
   }
-  void showAddSuccessfullyToast(){
-    Fluttertoast.showToast(
-      msg: "Successfully Added!!",
-      toastLength: Toast.LENGTH_LONG,
-    );
-  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
