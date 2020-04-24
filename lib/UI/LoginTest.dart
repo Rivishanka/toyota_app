@@ -2,7 +2,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:toyota_app/Animations/fadeAnimation.dart';
 import 'package:flutter/material.dart';
 import 'package:toyota_app/UI/AdminCarListPage.dart';
-import 'package:toyota_app/UI/TestSignUpPage.dart';
 import 'package:toyota_app/UI/signUpPage.dart';
 import 'package:toyota_app/API/AuthenticationService.dart';
 
