@@ -1,3 +1,4 @@
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:toyota_app/Animations/fadeAnimation.dart';
 import 'package:flutter/material.dart';
 import 'package:toyota_app/UI/AdminCarListPage.dart';
@@ -14,6 +15,7 @@ class _LoginPageState extends State<LoginTestPage>{
   TextEditingController emailController;
   TextEditingController passwordController;
   bool isLoading = false;
+  final _formKey = GlobalKey<FormState>();
 
   Widget PictureWidget(){
         return new ImageIcon(new AssetImage('assets/img/toyotalogo.png'),
@@ -31,7 +33,10 @@ class _LoginPageState extends State<LoginTestPage>{
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Form(
+      key: _formKey,
+      child: Scaffold(
+     // key: _formKey,
       resizeToAvoidBottomPadding: false,
       backgroundColor: Color.fromRGBO(3, 9, 23, 1),
       body: Container(
@@ -71,14 +76,23 @@ class _LoginPageState extends State<LoginTestPage>{
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.white
                   ),
-                  child: TextField(
+                  child: TextFormField(
+                    onTap: (){ _formKey.currentState.validate();},
                     controller: emailController,
+                    validator: (String value){
+                      if(value.isEmpty){
+                        return "Please provide valid email";
+                      }
+                    },
+
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
                         border: InputBorder.none,
                         hintStyle: TextStyle(color: Colors.grey.withOpacity(.8),),
                         hintText: "Email or Phone number"
                     ),
+
+                   // onTap: (){ _formKey.currentState.validate();},
                   ),
                 )),
             SizedBox(height: 10.0),
@@ -87,14 +101,21 @@ class _LoginPageState extends State<LoginTestPage>{
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white
               ),
-              child: TextField(
+              child: TextFormField(
                 controller: passwordController,
+                onTap: (){ _formKey.currentState.validate();},
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
                     border: InputBorder.none,
                     hintStyle: TextStyle(color: Colors.grey.withOpacity(.8)),
                     hintText: "Password"
                 ),
+
+                validator: (String pwd){
+                  if(pwd.isEmpty){
+                    return "Passwod is empty";
+                  }
+                },
               ),
             )),
 
@@ -117,21 +138,37 @@ class _LoginPageState extends State<LoginTestPage>{
                     //    return;
                     //  }
                      // else{
-                      setState(() {
-                        isLoading = true;
-                      });
-                        bool res = await AuthenticationService().loginWithEmail(emailController.text, passwordController.text);
+                      if(_formKey.currentState.validate()) {
+                        setState(() {
+                          isLoading = true;
+                        });
+                        bool res = await AuthenticationService().loginWithEmail(
+                            emailController.text, passwordController.text);
 
-                        if(res){
+                        if (res) {
                           setState(() {
                             isLoading = false;
                           });
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => AdminCarListPage()));
+                          Navigator.push(context, MaterialPageRoute(
+                              builder: (context) => AdminCarListPage()));
                         }
-                        else{
+                        else {
+                          setState(() {
+                            isLoading = false;
+                          });
+                          Fluttertoast.showToast(
+                              msg: "Please provide valid email and password",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16.0
+                          );
                           null;
                         }
-                    //  }
+                        //  }
+                      }
 
 
                     },
@@ -147,7 +184,7 @@ class _LoginPageState extends State<LoginTestPage>{
 
 
 
-            SizedBox(height: 40,),
+            SizedBox(height: 20,),
             FadeAnimationScreen(1.8, Center(
               child: Container(
                   width: 250.0,
@@ -171,6 +208,7 @@ class _LoginPageState extends State<LoginTestPage>{
         ),
       ),
 
+    )
     );
   }
 
