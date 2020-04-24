@@ -102,6 +102,7 @@ class _LoginPageState extends State<LoginTestPage>{
                   color: Colors.white
               ),
               child: TextFormField(
+                obscureText: true,
                 controller: passwordController,
                 onTap: (){ _formKey.currentState.validate();},
                 decoration: InputDecoration(
