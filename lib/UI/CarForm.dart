@@ -30,6 +30,7 @@ class CarForm extends StatefulWidget {
   _CarFormState createState() => _CarFormState();
 }
 class _CarFormState extends State<CarForm>{
+  final _formKey = GlobalKey<FormState>();
   VehicleAPI api = new VehicleAPI();
   TextEditingController controller1 = TextEditingController();
   TextEditingController controller2 = TextEditingController();
@@ -38,7 +39,6 @@ class _CarFormState extends State<CarForm>{
   TextEditingController controller5 = TextEditingController();
   TextEditingController controller6 = TextEditingController();
 
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   Car _curretCar;
   String imageURL;
   File _imageFile;
@@ -161,6 +161,7 @@ class _CarFormState extends State<CarForm>{
 
     return TextFormField(
       controller: controller1,
+      onTap: (){ _formKey.currentState.validate();},
       decoration: InputDecoration(fillColor: Colors.white, filled: true,contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0), border: OutlineInputBorder(borderRadius: BorderRadius.circular(10),), labelText: 'Color'),
       //decoration: InputDecoration(labelText: 'Color'),
       //initialValue: _curretCar.Colour,
@@ -182,6 +183,7 @@ class _CarFormState extends State<CarForm>{
 
     return TextFormField(
       controller: controller2,
+      onTap: (){ _formKey.currentState.validate();},
       decoration: InputDecoration(fillColor: Colors.white, filled: true,contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0), border: OutlineInputBorder(borderRadius: BorderRadius.circular(10),), labelText: 'MPG',),
       //decoration: InputDecoration(labelText: 'MPG'),
       //initialValue: _curretCar.MPG,
@@ -202,6 +204,7 @@ class _CarFormState extends State<CarForm>{
   Widget _buildModelField(){
     return TextFormField(
       controller: controller3,
+      onTap: (){ _formKey.currentState.validate();},
       decoration: InputDecoration(fillColor: Colors.white, filled: true,contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0), border: OutlineInputBorder(borderRadius: BorderRadius.circular(10),), labelText: 'Model',),
       //decoration: InputDecoration(labelText: 'Model'),
       //initialValue: _curretCar.MPG,
@@ -222,6 +225,7 @@ class _CarFormState extends State<CarForm>{
   Widget _buildNoOfSheetsField(){
     return TextFormField(
       controller: controller4,
+      onTap: (){ _formKey.currentState.validate();},
       decoration: InputDecoration(fillColor: Colors.white, filled: true,contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0), border: OutlineInputBorder(borderRadius: BorderRadius.circular(10),),labelText: 'No of Sheets',),
      // decoration: InputDecoration(labelText: 'No of Sheets'),
       //initialValue: _curretCar.MPG,
@@ -242,6 +246,7 @@ class _CarFormState extends State<CarForm>{
   Widget _buildPriceField(){
     return TextFormField(
       controller: controller5,
+      onTap: (){ _formKey.currentState.validate();},
       decoration: InputDecoration(fillColor: Colors.white, filled: true, contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),border: OutlineInputBorder(borderRadius: BorderRadius.circular(10),), labelText: 'Price'),
       //initialValue: _curretCar.MPG,
       keyboardType: TextInputType.text,
@@ -261,6 +266,7 @@ class _CarFormState extends State<CarForm>{
   Widget _buildSpecialFeaturesField(){
     return TextFormField(
       controller: controller6,
+      onTap: (){ _formKey.currentState.validate();},
       decoration: InputDecoration(fillColor: Colors.white, filled: true, contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0), border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), ), labelText: 'Special Features'),
       //decoration: InputDecoration(labelText: 'Special Features'),
       //initialValue: _curretCar.MPG,
@@ -316,7 +322,10 @@ class _CarFormState extends State<CarForm>{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Scaffold(
+    return Form(
+        key: _formKey,
+      child: Scaffold(
+      //key: _formKey,
       resizeToAvoidBottomPadding: true,
       appBar: AppBar(title: Text('Car Form'),
         flexibleSpace: Container(
@@ -346,7 +355,7 @@ class _CarFormState extends State<CarForm>{
                 stops: [0.5,1],
                 colors: [Colors.white,Colors.blue[900]]),
           ),
-          key: _formKey,
+
           //autovalidate: true,
           child:  Column(children: <Widget>[
 
@@ -397,9 +406,10 @@ class _CarFormState extends State<CarForm>{
                   child: Text("Add Vehicle".toUpperCase(),
                       style: TextStyle(fontSize: 16, color: Colors.white)),
                 onPressed: (){
-                  showDialog(context: context,
-                    builder: (BuildContext context) => alertBox());
-                  
+                  if(_formKey.currentState.validate()) {
+                    showDialog(context: context,
+                        builder: (BuildContext context) => alertBox());
+                  }
                 },
              shape: new RoundedRectangleBorder(
                  borderRadius: new BorderRadius.circular(18.0),
@@ -416,6 +426,7 @@ class _CarFormState extends State<CarForm>{
             ),
       ),
       ),
+    )
     );
   }
 }
