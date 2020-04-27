@@ -96,6 +96,7 @@ class _SignUpPageState extends State<SignUpPage>{
                   color: Colors.white
               ),
               child: TextField(
+                obscureText: true,
                 controller: passwordController,
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),

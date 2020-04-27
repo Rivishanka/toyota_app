@@ -5,7 +5,11 @@ import 'package:toyota_app/UI/AdminCarListPage.dart';
 import 'package:toyota_app/UI/signUpPage.dart';
 import 'package:toyota_app/API/AuthenticationService.dart';
 
-import 'CarListPage.dart';
+  /*
+    Author - N.J.Godewithana
+    This dart file is used to define the user login page
+
+   */
 class LoginTestPage extends StatefulWidget{
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -31,17 +35,17 @@ class _LoginPageState extends State<LoginTestPage>{
     passwordController = TextEditingController(text: "");
   }
 
+  // build the login ui
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
       child: Scaffold(
-     // key: _formKey,
       resizeToAvoidBottomPadding: false,
       backgroundColor: Color.fromRGBO(3, 9, 23, 1),
       body: Container(
-        padding: EdgeInsets.all(30),
 
+        padding: EdgeInsets.all(30),
         width: double.infinity,
         decoration: BoxDecoration(
             image: DecorationImage(
@@ -58,15 +62,12 @@ class _LoginPageState extends State<LoginTestPage>{
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SizedBox(height: 20),
-
             FadeAnimationScreen(1.2,
                 Container(
                   padding: EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
                   child: new Container(
                     child: PictureWidget(),
                   ),
-
-
                 )
             ),
             SizedBox(height: 30,),
@@ -92,10 +93,10 @@ class _LoginPageState extends State<LoginTestPage>{
                         hintText: "Email or Phone number"
                     ),
 
-                   // onTap: (){ _formKey.currentState.validate();},
                   ),
                 )),
             SizedBox(height: 10.0),
+
             FadeAnimationScreen(1.5, Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -122,6 +123,7 @@ class _LoginPageState extends State<LoginTestPage>{
 
 
             SizedBox(height: 40,),
+
             FadeAnimationScreen(1.8, Center(
               child: Container(
                   width: 250.0,
@@ -134,11 +136,7 @@ class _LoginPageState extends State<LoginTestPage>{
                     color: Colors.blue[900],
                     child: Center(child: Text("Login", style: TextStyle(color: Colors.white),)),
                     onPressed: () async{
-                    //  if(emailController.text.isEmpty || passwordController.text.isEmpty){
-                    //    print("Email and password can not be empty");
-                    //    return;
-                    //  }
-                     // else{
+
                       if(_formKey.currentState.validate()) {
                         setState(() {
                           isLoading = true;
@@ -168,22 +166,18 @@ class _LoginPageState extends State<LoginTestPage>{
                           );
                           null;
                         }
-                        //  }
                       }
-
 
                     },
                   )
               ),
             )),
+
             FadeAnimationScreen(1.5,   SizedBox(height: 50,
               child: Center(
                 child: Text("Forget Password ?", style: TextStyle(color: Colors.white,fontFamily: 'Courgette'),),
               ),),
             ),
-
-
-
 
             SizedBox(height: 20,),
             FadeAnimationScreen(1.8, Center(
@@ -212,6 +206,5 @@ class _LoginPageState extends State<LoginTestPage>{
     )
     );
   }
-
 
 }
